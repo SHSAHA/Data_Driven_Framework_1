@@ -12,6 +12,8 @@ public class DataReaders {
 	public static void readCSV() {
 		String filename = "C:\\Users\\shaswata\\Downloads\\New folder\\Data_Driven Framework_1\\UserAccounts.csv";
 		List <String[]> records = utilities.CSV.get(filename);
+		
+		//Itearting through the list
 		for (String[] record : records) {
 			for (String field : record) {
 				System.out.println(field);
