@@ -10,19 +10,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 
 @RunWith(value=Parameterized.class)
 public class NewAccountDDT {
-	String name;
-	String email;
-	String phone;
-	String gender;
-	String password;
-	String country;
-	boolean weeklyEmail;
-	boolean monthlyEmail;
-	boolean occasionalEmail;
+	String name, email, phone, gender, password, country;
+	boolean weeklyEmail, monthlyEmail, occasionalEmail;
+	WebElement nameElement , emailElement, phoneElement, passwordElement, verifyPasswordElement, countryElement, maleRadio, femaleRadio, weeklyCheckbox, submitButton; 
+	WebDriver driver;
 	
 	//This is the test method
 	@Test
@@ -31,28 +28,9 @@ public class NewAccountDDT {
 		if (phone.equals ("agggggss")) {
 			Assert.fail();
 		}
-		// 1. Create WebDriver
-		WebDriver driver = utilities.DriverFactory.open("chrome");
-		driver.get("http://sdettraining.com/trguitransactions/AccountManagement.aspx");
-		driver.findElement(By.xpath("html/body/form/div[3]/div[2]/div/div[2]/a")).click();		
-				
-						
-
-						
+	
 		// Define Web Elements
-		
-		WebElement nameElement = driver.findElement(By.id("MainContent_txtFirstName")); 
-		WebElement emailElement = driver.findElement(By.id("MainContent_txtEmail")); 
-		WebElement phoneElement = driver.findElement(By.id("MainContent_txtHomePhone")); 
-		WebElement passwordElement = driver.findElement(By.id("MainContent_txtPassword")); 
-		WebElement verifyPasswordElement = driver.findElement(By.id("MainContent_txtVerifyPassword")); 
-		WebElement countryElement = driver.findElement(By.id("MainContent_menuCountry")); 
-		WebElement maleRadio = driver.findElement(By.id("MainContent_Male")); 
-		WebElement femaleRadio = driver.findElement(By.id("MainContent_Female")); 
-		WebElement weeklyCheckbox = driver.findElement(By.id("MainContent_checkWeeklyEmail")); 	 
-		WebElement submitButton = driver.findElement(By.id("MainContent_btnSubmit")); 
-	 
-						
+		defineWebElements();
 						
 		//3. Fill out the form
 		nameElement.sendKeys(name);
@@ -90,6 +68,34 @@ public class NewAccountDDT {
 						
 	    //submit
 	    submitButton.click();
+	}
+	    @Before
+	    public void setUp() {
+	    	driver = utilities.DriverFactory.open("chrome");
+			driver.get("http://sdettraining.com/trguitransactions/AccountManagement.aspx");
+			driver.findElement(By.xpath("html/body/form/div[3]/div[2]/div/div[2]/a")).click();		
+	    	
+	    }
+	    
+	    @After
+	    public void tearDown() {
+	    	driver.quit();
+	    }
+	    
+	 
+	    public void defineWebElements() {
+			 nameElement = driver.findElement(By.id("MainContent_txtFirstName")); 
+			 emailElement = driver.findElement(By.id("MainContent_txtEmail")); 
+			 phoneElement = driver.findElement(By.id("MainContent_txtHomePhone")); 
+			 passwordElement = driver.findElement(By.id("MainContent_txtPassword")); 
+			 verifyPasswordElement = driver.findElement(By.id("MainContent_txtVerifyPassword")); 
+			 countryElement = driver.findElement(By.id("MainContent_menuCountry")); 
+			 maleRadio = driver.findElement(By.id("MainContent_Male")); 
+			 femaleRadio = driver.findElement(By.id("MainContent_Female")); 
+			 weeklyCheckbox = driver.findElement(By.id("MainContent_checkWeeklyEmail")); 	 
+			 submitButton = driver.findElement(By.id("MainContent_btnSubmit"));
+	    	
+	    }
 
 
 						
@@ -98,14 +104,15 @@ public class NewAccountDDT {
 						
 	   //4. Get Confirmation
 						
-	   String conf = driver.findElement(By.id("MainContent_lblTransactionResult")).getText();
-	   System.out.println("CONFIRMATION :" +conf);
+	   //String conf = driver.findElement(By.id("MainContent_lblTransactionResult")).getText();
+	   //System.out.println("CONFIRMATION :" +conf);
+
 						
 	   //5. Close the browser
-	   driver.close();	
+	   //driver.close();	
 		
 		
-	}
+	
 	//This annotated method is designed to pass parameters into the class via constructor 
 	@Parameters
 	public static List<String[]> getData(){

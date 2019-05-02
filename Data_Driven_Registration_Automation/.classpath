@@ -7,5 +7,7 @@
 	<classpathentry kind="lib" path="C:/Users/shaswata/Downloads/New folder/Data_Driven Framework_1/Software/cucumber-junit-1.2.5.jar"/>
 	<classpathentry kind="lib" path="C:/Users/shaswata/Downloads/New folder/Data_Driven Framework_1/Software/selenium-server-standalone-3.9.1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Users/shaswata/Downloads/New folder/Data_Driven Framework_1/Software/poi-3.16.jar"/>
+	<classpathentry kind="con" path="org.testng.TESTNG_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
